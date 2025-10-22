@@ -4,7 +4,7 @@
   "description": "description for project one",
   "main": "index.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.js",
     "test": "test"
   },
   "repository": {
@@ -22,5 +22,10 @@
   "homepage": "https://github.com/AmbitiousArgonian/WebDev#readme",
   "dependencies": {
     "bootstrap": "^5.3.8"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.5.4",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
   }
 }
