@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es6",
+    "outDir": "./dist/js",
+    "rootDir": "./src",
+    "strict": true,
+    "lib": ["ES6", "DOM"],
+    "moduleResolution": "bundler",
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
