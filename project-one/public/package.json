@@ -4,8 +4,8 @@
   "description": "description for project one",
   "main": "index.js",
   "scripts": {
-    "start": "node main.js",
-    "test": "test"
+    "build": "npx webpack && sass scss/custom.scss dist/css/custom.css",
+    "start": "ws --https"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "css-loader": "^7.1.2",
     "eslint": "^9.38.0",
+    "local-web-server": "^5.4.0",
     "sass": "^1.93.2",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
