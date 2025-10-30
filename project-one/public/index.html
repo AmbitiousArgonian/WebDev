@@ -9,8 +9,27 @@
   <link rel="stylesheet" href="./dist/css/custom.css" />
 </head>
 <body>
-  <h1>Willkommen bei Project One!</h1>
-  <p>Öffne die Browser-Konsole, um die TypeScript-Ausgabe zu sehen.</p>
+  <h1>Nutrition Facts Finder</h1>
+  <!-- Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">Food Scanner</a>
+    </div>
+  </nav>
+   <!-- Main Content -->
+  <main class="app-grid">
+    <section class="search-area">
+      <div class="col-md-8 mx-auto text-center">
+        <h1 class="mb-4">Find your food by barcode</h1>
+        <input id="barcodeInput" type="text" class="form-control mb-3" placeholder="Enter or scan barcode">
+        <div class="d-grid gap-2 d-md-block">
+          <button id="scanBtn" class="btn btn-outline-secondary me-2">Scan barcode</button>
+          <button id="searchBtn" class="btn btn-primary">Search</button>
+        </div>
+        <div id="result" class="mt-5"></div>
+      </div>
+    </section>
+  </main>
 
   <!-- Dein kompiliertes JavaScript -->
   <script src="/dist/js/bundle.js" type="module"></script>

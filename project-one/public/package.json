@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/AmbitiousArgonian/WebDev#readme",
   "dependencies": {
-    "bootstrap": "^5.3.8"
+    "bootstrap": "^5.3.8",
+    "jquery": "^3.7.1"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
