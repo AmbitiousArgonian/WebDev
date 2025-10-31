@@ -18,7 +18,7 @@
   </nav>
    <!-- Main Content -->
   <main class="app-grid">
-    <section class="search-area">
+    <section class="search-area"> <!-- Destop links -->
       <div class="col-md-8 mx-auto text-center">
         <h1 class="mb-4">Find your food by barcode</h1>
         <input id="barcodeInput" type="text" class="form-control mb-3" placeholder="Enter or scan barcode">
@@ -26,12 +26,17 @@
           <button id="scanBtn" class="btn btn-outline-secondary me-2">Scan barcode</button>
           <button id="searchBtn" class="btn btn-primary">Search</button>
         </div>
-        <div id="result" class="mt-5"></div>
+      </div>
+    </section>
+
+    <section id="result" class="result-area"> <!-- Desktop rechts -->
+      <div class="results">
+        <!-- Suchergebnisse werden hier angezeigt -->
       </div>
     </section>
   </main>
 
-  <!-- Dein kompiliertes JavaScript -->
+  <!-- JavaScript -->
   <script src="/dist/js/bundle.js" type="module"></script>
 </body>
 </html>

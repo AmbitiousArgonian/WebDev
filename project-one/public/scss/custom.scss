@@ -11,7 +11,7 @@ body{
     margin: 0;
     padding: 0;
 }
-.app-grid {
+.app-grid { //Mobile first styles
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
@@ -27,6 +27,7 @@ body{
   h1 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    text-align: center;
   }
 
   input {
@@ -48,6 +49,8 @@ body{
 .result-area {
   background: white;
   border-radius: 0.5rem;
+  flex-direction: column;
+  align-items: center;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
 }
@@ -55,11 +58,44 @@ body{
 main-cointainer {
     margin-top: 2rem;
 }
-//Responsive Styles for desktop
+
+.result-area .card { // Ergebnis-Karten Styling
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  overflow: hidden;
+
+  img {
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 1rem 1.25rem;
+  }
+
+  .card-title {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    color: #444;
+  }
+}
+
+//Desktop styles
 @media (min-width: 768px) {
   .app-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 2rem;
     align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .search-area {
@@ -74,5 +110,6 @@ main-cointainer {
 
   .result-area {
     padding: 2rem;
+    align-items: start;
   }
 }
