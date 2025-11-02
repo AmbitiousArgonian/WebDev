@@ -51,7 +51,12 @@ body{
     margin: 20px;
     background-color: #ffffff;
 }
-
+#reader {
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+}
 .result-area { 
   background: white;
   border-radius: 0.5rem;
