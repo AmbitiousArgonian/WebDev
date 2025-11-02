@@ -1,5 +1,11 @@
 import $ from "jquery";
+import {Html5QrcodeScanner} from "html5-qrcode";
 
+
+
+
+
+// --- Barcode Scanner Initialisierung ---
 // --- Event Listener für den Search-Button ---
 $('#searchBtn').on('click', async () => {
   const barcode = $('#barcodeInput').val() as string;
