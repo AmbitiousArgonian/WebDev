@@ -6,40 +6,48 @@ import {Html5QrcodeScanner} from "html5-qrcode";
 
 
 // --- Barcode Scanner Initialisierung ---
-  $('#scanBtn').on('click', () => {
+  $('#scanBtn').on('click', () =>
+    {
     $('#reader').html('');
     const scanner = new Html5QrcodeScanner(
       "reader",
-      { fps: 10, qrbox: 250, 
-       },
+      {
+        fps: 10,
+        qrbox: 250
+      },
       false
       );
-    const onScanSuccess = (decodedText: string , decodedResult: any) => {
+    const onScanSuccess = (decodedText: string , decodedResult: any) =>
+      {
        $('#barcodeInput').val(decodedText);
        scanner.clear();
        $('#searchBtn').trigger('click'); // Suche automatisch auslösen um such klick einzusparen
-     };
+       };
   scanner.render(onScanSuccess, undefined); // todo: onScanError Zukunftsproblem
-});
+    });
 
 // --- Event Listener für den Search-Button ---
-$('#searchBtn').on('click', async () => {
+$('#searchBtn').on('click', async () =>
+  {
   const barcode = $('#barcodeInput').val() as string;
 
-  if (!barcode) {
+  if (!barcode)
+    {
     alert("Please enter a barcode first!");
     return;
-  }
+   }
 
   // API-Aufruf
   const apiUrl = `https://world.openfoodfacts.org/api/v2/product/${barcode}.json`;
   console.log("Fetching:", apiUrl);
 
-  try {
+  try
+  {
     const response = await $.get(apiUrl);
     const product = response.product;
 
-    if (!product) { 
+    if (!product)
+    { 
       $('#result').html(`<div class="alert alert-warning">Product not found.</div>`);
       return;
     }
@@ -67,7 +75,8 @@ $('#searchBtn').on('click', async () => {
     `;
 
     $('#result').html(html);
-  } catch (error) {
+  } catch (error)
+  {
     console.error("API Error:", error);
     $('#result').html(`<div class="alert alert-danger">Error fetching data.</div>`);
   }
