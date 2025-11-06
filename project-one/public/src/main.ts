@@ -52,11 +52,19 @@ $('#searchBtn').on('click', async () =>
       return;
     }
     //Zutaten extrahieren und lesbar machen
-    const ingredients = product.ingredients_hierarchy || [];
+    const rawIngredients = product.ingredients_hierarchy;
+    // Wenn keine Zutatenliste vorhanden oder leer: Fallback auf ['N/A']
+    const ingredients = (Array.isArray(rawIngredients) && rawIngredients.length > 0)
+      ? rawIngredients
+      : ['N/A'];
+
     const topIngredients = ingredients.slice(0, 3);
     const readableIngredients = topIngredients
-        .map((i: string) => i.replace('en:', '').replace('de:', '')) // Sprachpräfixe entfernen um Lesbarkeit zu verbessern
-        .join(', ');
+      .map((i: any) => {
+        if (i === null || i === undefined) return 'N/A';
+        return String(i).replace(/^en:|^de:/, ''); // Sprachpräfixe entfernen
+      })
+      .join(', ');
     // Produktinformationen zusammenstellen
     const html = `
       <div class="card shadow-sm">
