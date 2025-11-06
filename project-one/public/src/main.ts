@@ -17,7 +17,7 @@ import {Html5QrcodeScanner} from "html5-qrcode";
     const onScanSuccess = (decodedText: string , decodedResult: any) => {
        $('#barcodeInput').val(decodedText);
        scanner.clear();
-       $('#searchBtn').trigger('click'); // Suche automatisch auslösen
+       $('#searchBtn').trigger('click'); // Suche automatisch auslösen um such klick einzusparen
      };
   scanner.render(onScanSuccess, undefined); // todo: onScanError Zukunftsproblem
 });
@@ -47,7 +47,7 @@ $('#searchBtn').on('click', async () => {
     const ingredients = product.ingredients_hierarchy || [];
     const topIngredients = ingredients.slice(0, 3);
     const readableIngredients = topIngredients
-        .map((i: string) => i.replace('en:', '').replace('de:', '')) // Sprachpräfixe entfernen
+        .map((i: string) => i.replace('en:', '').replace('de:', '')) // Sprachpräfixe entfernen um Lesbarkeit zu verbessern
         .join(', ');
     // Produktinformationen zusammenstellen
     const html = `
