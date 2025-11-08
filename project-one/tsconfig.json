@@ -21,7 +21,7 @@
     "declarationMap": true,
 
     //Mandatory Rules
-    "osModuleInterop": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
 
     // Stricter Typechecking Options
