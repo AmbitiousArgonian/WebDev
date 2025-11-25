@@ -1,0 +1,4 @@
+Cors konnte nicht installiert werden. (express Webapp)
+    -> wie kan die dependency hinzugefügt werden
+Problem bei npx prisma migrate dev --name init
+    ->url missing, aber wenn hinzugefügt wird angekreidet
