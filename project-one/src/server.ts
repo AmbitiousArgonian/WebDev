@@ -1,7 +1,11 @@
 import PostRouter from "./routes/post.route";
+//import { PrismaClient } from "@prisma/client"; // from essenzial read dev.to
 import express from 'express';
+
+//export const prisma = new PrismaClient(); //  from essenzial read dev.to
 // Create an Express application
 const app = express();
+
 // Set the port number for the server
 const port = 8000;
 // Define a route for the root path ('/')
