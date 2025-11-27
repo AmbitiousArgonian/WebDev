@@ -7,7 +7,7 @@ const ScanItem = async (req: Request, res: Response) => {
             content,
             },
     });
-res.status(200).json(newBlogPost);
+res.status(200).json(NewScanItem);
 } catch (e) {
 res.status(500).json({ error: e });
 }
@@ -15,5 +15,5 @@ res.status(500).json({ error: e });
 
 export default 
 {
-    createBlogPost: ScanItem
+    createScanItem: ScanItem
 };

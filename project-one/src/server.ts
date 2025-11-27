@@ -1,5 +1,5 @@
 import PostRouter from "./routes/post.route";
-import { PrismaClient } from "@prisma/client"; // from essenzial read dev.to
+import { PrismaClient } from "./generated/prisma/client"; // from essenzial read dev.to
 import express from 'express';
 
 export const prisma = new PrismaClient(); //  from essenzial read dev.to
