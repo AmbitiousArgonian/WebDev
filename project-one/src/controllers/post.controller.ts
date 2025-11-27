@@ -1,7 +1,7 @@
-const createBlogPost = async (req: Request, res: Response) => {
+const ScanItem = async (req: Request, res: Response) => {
     try {
     const { title, content } = req.body;
-    const newBlogPost = await prisma.post.create({
+    const NewScanItem = await prisma.post.create({
     data:   {
             title,
             content,
@@ -15,5 +15,5 @@ res.status(500).json({ error: e });
 
 export default 
 {
-    createBlogPost
+    createBlogPost: ScanItem
 };

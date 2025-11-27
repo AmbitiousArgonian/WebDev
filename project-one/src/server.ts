@@ -6,6 +6,9 @@ export const prisma = new PrismaClient(); //  from essenzial read dev.to
 // Create an Express application
 const app = express();
 
+// Cors
+var cors = require('cors')
+
 // Set the port number for the server
 const port = 8000;
 // Define a route for the root path ('/')
@@ -13,6 +16,12 @@ app.get('/', (req, res) => {
 // Send a response to the client
 res.send('Hello, TypeScript + Node.js + Express!');
 });
+
+app.use(cors())
+
+app.get('/products/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
 async function main() {
   app.use(express.json());
 
