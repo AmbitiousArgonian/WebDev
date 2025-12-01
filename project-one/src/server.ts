@@ -2,6 +2,7 @@
 import scanItemRouter from './routes/scanItem';
 import { PrismaClient } from "./generated/prisma/client"; 
 import express from 'express';
+import session from 'express-session';
 
 export const prisma = new PrismaClient();
 // Create an Express application
@@ -53,3 +54,11 @@ main()
 
   //Route
 app.use('/api/scanItem', scanItemRouter);
+
+//Session Management
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if using HTTPS
+}));
