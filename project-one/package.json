@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "node dist/server.js",
-    "build": "tsc",
+    "build": "tsc && db:migrate",
     "db:migrate": "npx prisma migrate dev --name user-entity --create-only && npx prisma generate",
     "db:push": "npx prisma db push"
   },

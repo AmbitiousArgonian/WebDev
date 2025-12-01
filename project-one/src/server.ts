@@ -1,4 +1,4 @@
-import PostRouter from "./routes/post.route";
+//import PostRouter from "./routes/post.route";
 import { PrismaClient } from "./generated/prisma/client"; // from essenzial read dev.to
 import express from 'express';
 
@@ -26,7 +26,7 @@ async function main() {
   app.use(express.json());
 
   // Register API routes
-  app.use("/api/v1/post", PostRouter);
+ // app.use("/api/v1/post", PostRouter);
 
   // Catch unregistered routes
   app.all("*", (req: Request, res: Response) => {
