@@ -1,4 +1,4 @@
-const ScanItem = async (req: Request, res: Response) => {
+/*const ScanItem = async (req: Request, res: Response) => {
     try {
     const { title, content } = req.body;
     const NewScanItem = await prisma.post.create({
@@ -17,3 +17,4 @@ export default
 {
     createScanItem: ScanItem
 };
+*/ //Template design

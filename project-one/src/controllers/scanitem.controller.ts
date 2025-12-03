@@ -1,11 +1,12 @@
 import express from 'express';
 import type { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-const router = express.Router();
+
+const controller = express.Router();
 const prisma = new PrismaClient();
 
 // POST /api/scanItem
-router.post('/', async (req: Request, res: Response) => {
+controller.post('/', async (req: Request, res: Response) => {
   try {
     const {
       name = 'UNKNOWN',
@@ -49,4 +50,4 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
-export default router;
+export default controller;
