@@ -24,7 +24,7 @@ app.get('/products/:id', function (req, res, next) {
 // Define a route for the root path ('/')
 app.get('/', (req, res) => {
 // Send a response to the client
-res.send('Hello, TypeScript + Node.js + Express!');
+res.send('Hello, i am a responce!');
 });
 
 
@@ -61,7 +61,7 @@ app.use(session({
   secret: 'my-secret-key', //random stuff to signate key
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Set to true if using HTTPS
+  cookie: { secure: false }, // Set to true if using HTTPS
   store: new PrismaSessionStore(prisma, {
     checkPeriod: 2 * 60 * 1000, //ms
     dbRecordIdIsSessionId: true,
