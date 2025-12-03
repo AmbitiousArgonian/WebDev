@@ -3,7 +3,7 @@ import scanItemRouter from './routes/scanItem.route';
 import { PrismaClient } from "./generated/prisma/client"; 
 import express from 'express';
 import session from 'express-session';
-//import { PrismaSessionStore } from '@quixo3/prisma-session-store'; //import schlägt fehl
+import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 
 export const prisma = new PrismaClient();
 // Create an Express application
@@ -58,15 +58,15 @@ app.use('/api/scanItem', scanItemRouter);
 
 //Session Management
 app.use(session({
-  secret: 'your-secret-key', //random stuff zum signieren
+  secret: 'my-secret-key', //random stuff to signate key
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false } // Set to true if using HTTPS
-  /*store: new PrismaSessionStore(prisma, {
+  store: new PrismaSessionStore(prisma, {
     checkPeriod: 2 * 60 * 1000, //ms
     dbRecordIdIsSessionId: true,
     dbRecordIdFunction: undefined,
-  })*/
+  })
 }));
 login = async (req: Request, res: Response) => {
   // Implement login logic here Datenbankabfrage etc.
