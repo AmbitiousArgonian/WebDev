@@ -1,6 +1,6 @@
 //import PostRouter from "./routes/post.route";
 import scanItemRouter from './routes/scanItem.route';
-import { PrismaClient } from "./generated/prisma/client"; 
+import { PrismaClient } from "./generated/prisma/client";
 import express from 'express';
 import session from 'express-session';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
@@ -17,23 +17,37 @@ var cors = require('cors')
 app.use(cors())
 
 app.get('/products/:id', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
+  res.json({ msg: 'This is CORS-enabled for all origins!' })
 })
 
 
 // Define a route for the root path ('/')
 app.get('/', (req, res) => {
-// Send a response to the client
-res.send('Hello, i am a responce!');
+  // Send a response to the client
+  res.send('Hello, i am a responce!');
 });
 
 
 async function main() {
   app.use(express.json());
 
-  // Register API routes
-  app.use('/api/scanItem', scanItemRouter);
+  
 
+  //Session Management
+app.use(session({
+  secret: 'my-secret-key', //random stuff to signate key
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }, // Set to true if using HTTPS
+  store: new PrismaSessionStore(prisma, {
+    checkPeriod: 2 * 60 * 1000, //ms
+    //dbRecordIdIsSessionId: true,
+    //dbRecordIdFunction: undefined,
+  })
+}));
+// Register API routes
+  app.use('/api/scanItem', scanItemRouter);
+  
   // Catch unregistered routes
   /*app.all("*", (req: Request, res: Response) => {
     res.status(404).json({ error: `Route ${req.originalUrl} not found` });
@@ -53,23 +67,13 @@ main()
     process.exit(1);
   });
 
-  //Route
+//Route
 app.use('/api/scanItem', scanItemRouter);
 
-//Session Management
-app.use(session({
-  secret: 'my-secret-key', //random stuff to signate key
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }, // Set to true if using HTTPS
-  store: new PrismaSessionStore(prisma, {
-    checkPeriod: 2 * 60 * 1000, //ms
-    dbRecordIdIsSessionId: true,
-    dbRecordIdFunction: undefined,
-  })
-}));
-login = async (req: Request, res: Response) => {
+
+let login = async (req: Request, res: Response) => {
   // Implement login logic here Datenbankabfrage etc.
   //store the user info and unser email in the session
   req.session.userId = userID;
 }
+
