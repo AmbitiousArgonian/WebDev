@@ -5,8 +5,8 @@ import { PrismaClient } from '@prisma/client';
 const controller = express.Router();
 const prisma = new PrismaClient();
 
-/* POST /api/scanItem
-controller.post('/', async (req: Request, res: Response) => {
+// die Logik
+const ScanItem = async (req: Request, res: Response) => {
   try {
     const {
       name = 'UNKNOWN',
@@ -18,9 +18,9 @@ controller.post('/', async (req: Request, res: Response) => {
       content = 'UNKNOWN',
       nutrition = {},
       userId = 1 // Placeholder — später aus Session holen
-    } = req.body; */
+    } = req.body; 
 
-    // ScanItem mit Nutrition erstellen //infos aus dem request deklaiereren
+    // ScanItem mit Nutrition erstellen
     const scanItem = await prisma.scanItem.create({
       data: {
         name,
@@ -48,6 +48,6 @@ controller.post('/', async (req: Request, res: Response) => {
     console.error('Error creating scan item:', error);
     res.status(500).json({ error: 'Error creating item' });
   }
-});
+};
 
 export default controller;
