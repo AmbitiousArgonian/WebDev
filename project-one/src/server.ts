@@ -1,5 +1,5 @@
 //import PostRouter from "./routes/post.route";
-import scanItemRouter from './routes/scanItem.route';
+//import scanItemRoute from './routes/scanItem.route';
 import { PrismaClient } from "./generated/prisma/client";
 import express from 'express';
 import session from 'express-session';
@@ -46,7 +46,7 @@ app.use(session({
   })
 }));
 // Register API routes
-  app.use('/api/scanItem', scanItemRouter);
+  //app.use('/api/scanItem', scanItemRoute);
   
   // Catch unregistered routes
   /*app.all("*", (req: Request, res: Response) => {
@@ -67,13 +67,11 @@ main()
     process.exit(1);
   });
 
-//Route
-app.use('/api/scanItem', scanItemRouter);
 
 
-let login = async (req: Request, res: Response) => {
+/*let login = async (req: Request, res: Response) => {
   // Implement login logic here Datenbankabfrage etc.
   //store the user info and unser email in the session
   req.session.userId = userID;
-}
+} */
 
