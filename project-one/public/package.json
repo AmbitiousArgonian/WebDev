@@ -23,6 +23,7 @@
   "homepage": "https://github.com/AmbitiousArgonian/WebDev#readme",
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "chart.js": "^4.5.1",
     "jquery": "^3.7.1"
   },
   "devDependencies": {

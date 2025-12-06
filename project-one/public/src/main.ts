@@ -1,5 +1,6 @@
 import $ from "jquery";
 import {Html5QrcodeScanner} from "html5-qrcode";
+import { Chart } from "chart.js"; 
 
 
 
@@ -65,6 +66,40 @@ $('#searchBtn').on('click', async () =>
         return String(i).replace(/^en:|^de:/, ''); // Sprachpräfixe entfernen
       })
       .join(', ');
+    // Chart erstellen
+    let ingredientChart: Chart | null = null;
+    $('#result').append('<div class="mt-3"><canvas id="ingredientsChart"></canvas></div>');
+    const ctx = (document.getElementById('ingredientsChart') as HTMLCanvasElement).getContext('2d');
+
+    const normalized = ingredients.map((i: any) => String(i).toLowerCase());
+    const countWithA = normalized.filter((s: string) => s.includes('a')).length;
+    const countWithoutA = normalized.length - countWithA;
+
+    if (ingredientChart) {
+      //ingredientChart.destroy();
+      ingredientChart = null;
+    }
+
+    if (ctx) {
+      ingredientChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['enthält "a"', 'enthält kein "a"'],
+          datasets: [{
+            data: [countWithA, countWithoutA],
+            backgroundColor: ['#36A2EB', '#FF6384'],
+            hoverOffset: 6
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { position: 'bottom' }
+          },
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      });
+    }
     // Produktinformationen zusammenstellen
     const html = `
       <div class="card shadow-sm">
