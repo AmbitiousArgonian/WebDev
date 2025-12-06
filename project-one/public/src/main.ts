@@ -1,8 +1,8 @@
 import $ from "jquery";
 import {Html5QrcodeScanner} from "html5-qrcode";
-import { Chart } from "chart.js"; 
+import { Chart } from "chart.js/auto"; 
 
-
+let ingredientsChart: Chart | null = null;
 
 
 
@@ -66,21 +66,7 @@ $('#searchBtn').on('click', async () =>
         return String(i).replace(/^en:|^de:/, ''); // Sprachpräfixe entfernen
       })
       .join(', ');
-    // Chart erstellen
-    const normalized = ingredients.map((i: any) => String(i).toLowerCase());
-    const countWithA = normalized.filter((s: string) => s.includes('a')).length;
-    const countWithoutA = normalized.length - countWithA;
-    const data = {
-      labels: ['Ingredients with "a"', 'Ingredients without "a"'],
-      datasets: [{
-        label: 'Ingredient with "a"',
-        data: [5, 3], // Platzhalter, zum testen
-        backgroundColor: ['#36A2EB', '#FF6384'],
-      }]}
-    const ingredientsChart = {
-      type: 'pie',
-      data: data,
-    };
+   
     // Produktinformationen zusammenstellen
     const html = `
       <div class="card shadow-sm">
@@ -105,6 +91,36 @@ $('#searchBtn').on('click', async () =>
     `;
 
     $('#result').html(html);
+
+     // Chart erstellen
+    
+    const normalized = ingredients.map((i: any) => String(i).toLowerCase());
+    const countWithA = normalized.filter((s: string) => s.includes('a')).length;
+    const countWithoutA = normalized.length - countWithA;
+    const data = {
+      labels: ['Ingredients with "a"', 'Ingredients without "a"'],
+      datasets: [{
+        label: 'Ingredient with "a"',
+        data: [countWithA, countWithoutA],
+        backgroundColor: ['#36A2EB', '#FF6384'],
+      }]}
+    const ctx = document.getElementById('ingredientsChart') as HTMLCanvasElement;
+    if (ctx) {
+      if (ingredientsChart) 
+        {
+          ingredientsChart.destroy();
+        }
+      ingredientsChart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: { 
+          responsive: true, 
+          maintainAspectRatio: false, 
+          plugins: {
+            legend: {
+              position: 'bottom',}
+      }}});
+    }
   } catch (error)
   {
     console.error("API Error:", error);
