@@ -67,39 +67,20 @@ $('#searchBtn').on('click', async () =>
       })
       .join(', ');
     // Chart erstellen
-    let ingredientChart: Chart | null = null;
-    $('#result').append('<div class="mt-3"><canvas id="ingredientsChart"></canvas></div>');
-    const ctx = (document.getElementById('ingredientsChart') as HTMLCanvasElement).getContext('2d');
-
     const normalized = ingredients.map((i: any) => String(i).toLowerCase());
     const countWithA = normalized.filter((s: string) => s.includes('a')).length;
     const countWithoutA = normalized.length - countWithA;
-
-    if (ingredientChart) {
-      //ingredientChart.destroy();
-      ingredientChart = null;
-    }
-
-    if (ctx) {
-      ingredientChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: ['enthält "a"', 'enthält kein "a"'],
-          datasets: [{
-            data: [countWithA, countWithoutA],
-            backgroundColor: ['#36A2EB', '#FF6384'],
-            hoverOffset: 6
-          }]
-        },
-        options: {
-          plugins: {
-            legend: { position: 'bottom' }
-          },
-          responsive: true,
-          maintainAspectRatio: false
-        }
-      });
-    }
+    const data = {
+      labels: ['Ingredients with "a"', 'Ingredients without "a"'],
+      datasets: [{
+        label: 'Ingredient with "a"',
+        data: [5, 3], // Platzhalter, zum testen
+        backgroundColor: ['#36A2EB', '#FF6384'],
+      }]}
+    const ingredientsChart = {
+      type: 'pie',
+      data: data,
+    };
     // Produktinformationen zusammenstellen
     const html = `
       <div class="card shadow-sm">
@@ -113,6 +94,12 @@ $('#searchBtn').on('click', async () =>
           <p>Carbs: ${product.nutriments.carbohydrates || 'N/A'} g</p>
           <p>Fats: ${product.nutriments.fat || 'N/A'} g</p>
           <p><strong>Main Ingredients:</strong> ${readableIngredients}</p>
+            <div 
+              id="ingredientsChartContainer" class="ingredients-chart-container">
+              <canvas 
+                id="ingredientsChart">
+              </canvas>
+            </div>
         </div>
       </div>
     `;
