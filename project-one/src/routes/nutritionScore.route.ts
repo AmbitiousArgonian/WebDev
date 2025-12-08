@@ -1,4 +1,4 @@
-import NutritionScore from '../controllers/nutritionScore.controller'; //redundant ?
+import NutritionScore from '../controllers/nutritionScore.controller';
 import express from 'express';
 
 const router = express.Router();

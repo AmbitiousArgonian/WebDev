@@ -1,7 +1,10 @@
-import { Request, Response } from 'express';
-import { PrismaClient } from '../generated/prisma';
+import express from 'express';
+import type { Request, Response } from 'express';
+import { PrismaClient } from '@prisma/client';
 
+const controller = express.Router();
 const prisma = new PrismaClient();
+
 
 interface NutritionScoreCategory {
   category: string;
@@ -89,7 +92,4 @@ const aggregateNutritionScores = (
 };
 
 // Default Export
-export default {
-  getAverageNutritionScore,
-  aggregateNutritionScores,
-};
+export default controller;
