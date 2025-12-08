@@ -1,5 +1,5 @@
-//import PostRouter from "./routes/post.route";
-//import scanItemRoute from './routes/scanItem.route';
+import nutritionScoreRoute from './routes/nutritionScore.route';
+import scanItemRoute from './routes/scanItem.route';
 import { PrismaClient } from "./generated/prisma/client";
 import express from 'express';
 import session from 'express-session';
@@ -27,6 +27,19 @@ app.get('/', (req, res) => {
   res.send('Hello, i am a responce!');
 });
 
+// Register API routes
+    app.use('/api/scanItem', scanItemRoute);
+    app.use('/api/nutritionScore', nutritionScoreRoute);
+
+main()
+  .then(async () => {
+    await prisma.$connect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
 
 async function main() {
   app.use(express.json());
@@ -45,8 +58,7 @@ app.use(session({
     //dbRecordIdFunction: undefined,
   })
 }));
-// Register API routes
-  //app.use('/api/scanItem', scanItemRoute);
+
   
   // Catch unregistered routes
   /*app.all("*", (req: Request, res: Response) => {
@@ -57,15 +69,7 @@ app.use(session({
     console.log(`Server is listening on port ${port}`);
   });
 }
-main()
-  .then(async () => {
-    await prisma.$connect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
-  });
+
 
 
 
